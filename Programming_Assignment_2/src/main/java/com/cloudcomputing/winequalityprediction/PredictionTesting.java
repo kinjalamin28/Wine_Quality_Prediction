@@ -19,7 +19,7 @@ public class PredictionTesting {
         }
 
         final String TEST_DATASET = args[0];
-        final String SAVED_MODEL = args[1];
+        final String MODEL_PATH = args[1];
 
         SparkSession spark = new SparkSession.Builder()
                 .appName("Wine Quality Prediction").getOrCreate();
@@ -27,7 +27,7 @@ public class PredictionTesting {
         PredictionModelTrainer predictionModelTrainer = new PredictionModelTrainer();
 
         // Load model
-        PipelineModel model = PipelineModel.load(SAVED_MODEL);
+        PipelineModel model = PipelineModel.load(MODEL_PATH);
 
         // read and transform test data in vector format
         Dataset<Row> testDataSet = predictionModelTrainer.readAndTransformDataSet(spark, TEST_DATASET);
